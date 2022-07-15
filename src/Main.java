@@ -169,3 +169,4 @@ public class Main {
 // Position: A3 / 4 / 10 |
 // Available items at shelf: 500 |
 // Comment:
+///
