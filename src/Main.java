@@ -1,7 +1,6 @@
 import java.util.Scanner;
 public class Main {
-
-    public static void startMenu(String[][] allInf,int j,int counter) {
+    public static void startMenu(String[][] allInf,int j) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please choose what to do (0 - Exit; 1 - List all items; 2 - Add new delivery; 3 - List deliveries for time period)");
         String choice = scanner.nextLine();
@@ -9,11 +8,11 @@ public class Main {
             case "0": //exit
                 break;
             case "1":
-                listAllItems(allInf,j,counter);
+                listAllItems(allInf,j);
                 break;
             case "2":
                 j++;
-                addNewItem(allInf, j,counter);
+                addNewItem(allInf, j);
                 break;
             case "3":
                 listDeliveriesForTimePeriod(allInf,j);
@@ -21,10 +20,10 @@ public class Main {
             default:
                 System.out.println("Invalid Selection");
                 System.out.println("Please select again (1-3)");
-                startMenu(allInf,j,counter);
+                startMenu(allInf,j);
         }
     }
-    public static void addNewItem(String[][] allInf, int j,int counter) {
+    public static void addNewItem(String[][] allInf, int j) {
         Scanner scanner = new Scanner(System.in);
 
             while (allInf[j][0] == null){
@@ -60,15 +59,15 @@ public class Main {
                     double sumSize = sizeA * sizeC * sizeB;
                     System.out.println("Product was added successfully!");
                 System.out.println();
-                sortProducts(allInf, j,sumSize,counter);
+                sortProducts(allInf, j,sumSize);
                 break;
         }
-        startMenu(allInf,j,counter);
+        startMenu(allInf,j);
     }
-        public static void listAllItems (String[][]allInf,int j,int counter){
+        public static void listAllItems (String[][]allInf,int j){
             if (allInf[0][0]==null){
                 System.out.println("Please enter Products !");
-                startMenu(allInf,j,counter);
+                startMenu(allInf,j);
             }
             j=0;
             while (allInf[j][0]!=null){
@@ -92,36 +91,35 @@ public class Main {
                 j++;
                 System.out.println();
             }
-        startMenu(allInf,j,counter);
+        startMenu(allInf,j);
         }
-        public static void sortProducts(String[][]allInf,int j,double sumSize,int counter) {
+        public static void sortProducts(String[][]allInf,int j,double sumSize) {
             sumSize = sumSize * Double.valueOf(allInf[j][5]);
-            counter++;
             System.out.println("Size as m3 : "+sumSize);
             if (sumSize>0&&sumSize <= 10) {
-                allInf[j][7] = "A|Section 1| Product serial number "+ String.valueOf(counter);
+                allInf[j][7] = "A|Section 1| Product serial number "+ String.valueOf(j);
             } else if (sumSize < 20 && sumSize >= 10) {
-                allInf[j][7] = "A|Section 2|Product serial number "+ String.valueOf(counter);
+                allInf[j][7] = "A|Section 2|Product serial number "+ String.valueOf(j);
             } else if (sumSize < 30 && sumSize >= 20) {
-                allInf[j][7] = "A|Section 3|Product serial number "+ String.valueOf(counter );
+                allInf[j][7] = "A|Section 3|Product serial number "+ String.valueOf(j );
             } else if (sumSize < 40 && sumSize >= 30) {
-                allInf[j][7] = "A|Section 4|Product serial number "+ String.valueOf(counter);
+                allInf[j][7] = "A|Section 4|Product serial number "+ String.valueOf(j);
             }else if (sumSize < 50 && sumSize >= 40) {
-                allInf[j][7] = "A|Section 5|Product serial number "+ String.valueOf(counter);
+                allInf[j][7] = "A|Section 5|Product serial number "+ String.valueOf(j);
             }else if (sumSize < 60 && sumSize >= 50) {
-                allInf[j][7] = "A|Section 6|Product serial number " + String.valueOf(counter);
+                allInf[j][7] = "A|Section 6|Product serial number " + String.valueOf(j);
             }else if (sumSize < 70 && sumSize >=60) {
-                allInf[j][7] = "A|Section 7|Product serial number "+ String.valueOf(counter);
+                allInf[j][7] = "A|Section 7|Product serial number "+ String.valueOf(j);
             }else if (sumSize < 80 && sumSize >= 70) {
-                allInf[j][7] = "A|Section 8|Product serial number "+ String.valueOf(counter);
+                allInf[j][7] = "A|Section 8|Product serial number "+ String.valueOf(j);
             }else if (sumSize < 90 && sumSize >= 80) {
-                allInf[j][7] = "A|Section 9|Product serial number "+ String.valueOf(counter);
+                allInf[j][7] = "A|Section 9|Product serial number "+ String.valueOf(j);
             }else if (sumSize < 100 && sumSize >= 90) {
-                allInf[j][7] = "A|Section 10|Product serial number "+ String.valueOf(counter);
+                allInf[j][7] = "A|Section 10|Product serial number "+ String.valueOf(j);
             }else {
-                allInf[j][7] = "O|Section XXX|Product serial number ERORR!!!!!!- "+ String.valueOf(counter+1);
+                allInf[j][7] = "O|Section XXX|Product serial number ERORR!!!!!!- "+ String.valueOf(j+1);
             }
-            startMenu(allInf, j,counter);
+            startMenu(allInf, j);
         }
         public static void listDeliveriesForTimePeriod (String[][] allInf,int j) {
             Scanner scanner = new Scanner(System.in);
@@ -152,14 +150,13 @@ public class Main {
                 }
             }else {
                 System.out.println("Please enter Products !");
-                startMenu(allInf,j,0);
+                startMenu(allInf,j);
             }
         }
         public static void main (String[]args){
             String allInformation[][] = new String[20][8];
             int j=-1;
-            int counter=0;
-            startMenu(allInformation,j,counter);
+            startMenu(allInformation,j);
         }
     }
 
